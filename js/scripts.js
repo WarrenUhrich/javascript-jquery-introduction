@@ -13,6 +13,7 @@ const myHeading = $( 'h1' );
 console.log( myHeading );
 
 // Injecting HTML after the selected element.
+// https://api.jquery.com/after/
 myHeading.after( `
   <ul><!-- Woah! This was a quick way to add new elements... -->
     <li><!-- This would have required an extra step in "vanilla" JS! -->
@@ -33,3 +34,39 @@ myHeading.after( `
     </li>
   </ul>
 ` );
+
+// Select some of our new elements.
+const myListItems = $( 'li' );
+const myListItemPs = $( 'li p' );
+
+// Hide our P tags.
+// https://api.jquery.com/hide/
+myListItemPs.hide();
+
+// Event listeners.
+// With the $().on( SELECTOR, EVENT ) syntax, even if new elements
+// matching the selector are added after-the-fact, the event will
+// still fire on the new/dynamic elements.
+// https://api.jquery.com/on/
+$( 'body' ).on( 'click', 'li', function ( event ) { // We can't use an arrow function here,
+                                                    // or we lose the ability to use our "this"
+                                                    // keyword! (Used for referring to the
+                                                    // affected element!)
+  const clickedElement = $( this ); // Converting generic "this" (current element) into a jQuery
+                                    // version, so we can use all of our new fancy jQuery methods!
+  
+  // Get the child paragraph.
+  // https://api.jquery.com/children/
+  const clickedElementP = clickedElement.children( 'p' );
+
+  // Check if hiding or not...
+  // https://api.jquery.com/is/
+  if ( clickedElementP.is( ':hidden' ) ) {
+    // If it is hidden, show it!
+    // https://api.jquery.com/show/
+    clickedElementP.show();
+  } else {
+    // If it is showing, hide it!
+    clickedElementP.hide();
+  }
+} );
