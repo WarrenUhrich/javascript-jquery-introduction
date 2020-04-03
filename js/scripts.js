@@ -64,9 +64,27 @@ $( 'body' ).on( 'click', 'li', function ( event ) { // We can't use an arrow fun
   if ( clickedElementP.is( ':hidden' ) ) {
     // If it is hidden, show it!
     // https://api.jquery.com/show/
-    clickedElementP.show();
+    clickedElementP.show( 500 ); // We can set a duration in miliseconds!
   } else {
     // If it is showing, hide it!
-    clickedElementP.hide();
+    clickedElementP.hide( 500 );
   }
 } );
+
+/**
+ * Let's try a slightly more complex/custom animation!
+ * @link https://api.jquery.com/animate/
+ */
+
+myHeading.animate(
+  // First argument is an object with the desired styles.
+  { // Apparently colours require the jQuery-UI library... :(
+    "font-size": "40px",
+    "padding": "32px"
+  },
+  // Second argument is the duration of the animation.
+  1500, // 1 and a half seconds.
+  // Third argument can be a function that occurs once the animation
+  // is completed (note that this is optional.)
+  () => { console.log( 'Animation complete!' ) }
+);
