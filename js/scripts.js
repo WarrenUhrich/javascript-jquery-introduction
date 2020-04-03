@@ -8,5 +8,28 @@
  *       itself as a shorthand!
  */
 
-const myHeading = $( 'h1' ); // Grabbing an element.
+// Grabbing an element.
+const myHeading = $( 'h1' );
 console.log( myHeading );
+
+// Injecting HTML after the selected element.
+myHeading.after( `
+  <ul><!-- Woah! This was a quick way to add new elements... -->
+    <li><!-- This would have required an extra step in "vanilla" JS! -->
+      <h2>HTML</h2>
+      <p>HyperText Markup Language</p>
+    </li>
+    <li>
+      <h2>CSS</h2>
+      <p>Cascading StyleSheet</p>
+    </li>
+    <li>
+      <h2>JS</h2>
+      <p>JavaScript</p>
+    </li>
+    <li>
+      <h2>PHP</h2>
+      <p>PHP Hypertext Preprocessor</p>
+    </li>
+  </ul>
+` );
